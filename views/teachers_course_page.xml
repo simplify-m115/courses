@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="teachers_form_view5">
+            <field name="name">courses.courses.form</field>
+            <field name="model">courses.courses</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="report_course_card"
+                string="Course Report"
+                model="courses.courses"
+                report_type="qweb-pdf"
+                file="courses.report_course"
+                name="courses.report_course"
+                print_report_name="(object.name + ' (' + object.course_semester +').pdf')"
+                menu="False"/>
+
+        <report
+                id="report_student_card"
+                string="Grade Report"
+                model="courses.students"
+                report_type="qweb-pdf"
+                file="courses.report_student"
+                name="courses.report_student"
+                print_report_name="(object.student_name + '_' + object.student_surname + '_'
+                + object.student_index_number  +'.pdf')"
+                menu="True"/>
+
+    </data>
+</odoo>

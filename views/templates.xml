@@ -1,0 +1,27 @@
+<odoo>
+    <template id="assets_frontend"
+              inherit_id="web.assets_frontend">
+        <xpath expr="link[last()]" positoin="after">
+            <link href="/courses/static/src/css/my_library.css"
+                  rel="stylesheet" type="text/css"/>
+            <link href="/courses/static/src/scss/my_library.scss"
+                  rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+        <template id="teachers_courses_page">
+        <t>
+            <t t-foreach="teachers" t-as="teacher">
+                Teacher
+                <t t-esc="teacher.name"/>
+                <t t-foreach="teacher.teacher_courses" t-as="classes">
+                    <t t-esc="classes.name"/>
+                    <t t-foreach="classes.students_in_course" t-as="student">
+                        <t t-esc="student.student_name"/>
+                        <t t-esc="student.student_surname"/>
+                    </t>
+                </t>
+                <br/>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Courses',
+    'version': '1.0',
+    'summary': 'Courses Management Software',
+    'sequence': -1000,
+    'description': """Courses Management Software""",
+    'category': 'Accounting',
+    'website': 'https://www.odoo.com/page/billing',
+    'depends': ['web', 'contacts', 'sale_management', 'website_sale'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/assets.xml',
+        'views/courses_menu_view.xml',
+        'views/students_view.xml',
+        'views/courses_view.xml',
+        'views/teachers_view.xml',
+        'views/grades_views.xml',
+        'views/templates.xml',
+        'views/list_courses.xml',
+        'views/list_students_in_course.xml',
+        'report/report.xml',
+        'report/course_card.xml',
+        'report/student_card.xml',
+        'data/mail_template.xml'
+    ],
+    'demo': [],
+    'qweb': [],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

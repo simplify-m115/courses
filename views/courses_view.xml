@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend"
+              inherit_id="web.assets_frontend">
+        <xpath expr="link[last()]" positoin="after">
+            <link href="/courses/static/src/css/my_library.css"
+                  rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+
+    <record model="ir.ui.view" id="courses_tree_view">
+        <field name="name">courses.courses.tree</field>
+        <field name="model">courses.courses</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="course_teacher_name"/>
+                <field name="course_field_of_study"/>
+                <field name="course_semester"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_courses_kanban">
+        <field name="name">courses.courses.kanban</field>
+        <field name="model">courses.courses</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="course_teacher_name"/>
+                <field name="course_semester"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        Course name:
+                                        <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Teacher name:
+                                        <field name="course_teacher_name"/>
+                                    </li>
+                                    <li>
+                                        Course Semester:
+                                        <field name="course_semester"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="courses_form_view" model="ir.ui.view">
+        <field name="name">courses.courses.form</field>
+        <field name="model">courses.courses</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_draft" type="object" string="Draft" states="open"
+                            invisible="0"/>
+                    <button name="action_open" type="object" string="Open" states="draft"
+                            invisible="0"/>
+                    <button name="grade_form" type="object" string="Insert Grades"
+                            states="open" class="oe_highlight"/>
+                    <button name="copy_course" type="object" string="Clone Course" states="finished"
+                            class="oe_highlight"/>
+                    <button name="grade_form" type="object" string="View Grades"
+                            states="finished" class="oe_highlight"/>
+                    <button name="print_report" string="Print Report" type="object"
+                            states="finished" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,finished"/>
+
+                </header>
+                <sheet>
+                    <group>
+                        <field name="course_teacher_name"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="name"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+                    </group>
+
+
+                    <group>
+                        <field name="course_semester"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="course_description"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="course_start_date"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="course_end_date"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="course_field_of_study"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="course_file" widget="many2many_binary"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}"/>
+                    </group>
+                    <group>
+                        <field name="course_is_published" widget="boolean_toggle"/>
+                    </group>
+                    <group>
+                        <field name="students_in_course" widget="many2many"
+                               attrs="{'readonly':[('state','in',('open','finished'))]}">
+                            <tree>
+                                <field name="student_name"/>
+                                <field name="student_surname"/>
+                                <field name="student_email"/>
+                                <field name="student_index_number"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="courses_action">
+        <field name="name">Courses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">courses.courses</field>
+        <field name="view_mode">tree</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first course.
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="courses_action_2">
+        <field name="name">Courses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">courses.courses</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first course.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Courses" id="courses.menu_courses_2" action="courses_action_2" parent="courses.menu_root"
+              sequence="10"/>
+
+    <menuitem name="Courses" id="courses.menu_courses" action="courses_action" parent="courses.menu_root"
+              sequence="9"/>
+
+</odoo>

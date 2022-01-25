@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="Courses" id="courses.menu_root" sequence="1" active="True"
+                  web_icon="courses/static/icon.png"/>
+    </data>
+</odoo>

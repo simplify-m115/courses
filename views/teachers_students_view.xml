@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="teachers_tree_view">
+            <field name="name">courses.teachers.tree</field>
+            <field name="model">courses.teachers</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="teacher_surname"/>
+                    <field name="teacher_courses"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="teachers_student_action">
+            <field name="name">Teachers_students</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">courses.teachers</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No students
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem name="Teacher Students" id="courses.menu_courses" action="teachers_student_action" parent="courses.menu_root"
+                  sequence="5"/>
+
+    </data>
+</odoo>

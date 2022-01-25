@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="send_student_mail_template" model="mail.template">
+            <field name="name">Course welcome mail to a student</field>
+            <field name="model_id" ref="courses.model_courses_send_mail"/>
+            <field name="email_from">${object.teacher.teacher_email}</field>
+            <field name="email_to">${object.student.student_email}</field>
+            <field name="subject">Welcome mail to course ${object.course.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="font-size: 13px; margin: 0px; padding: 0px;">
+                        Dear ${object.student.student_name}
+                        <br/>
+                        <br/>
+                        Welcome to course ${object.course.name}.
+                        <br/>
+                        Our classes will be held in classroom number ${object.teacher.teacher_classroom}.
+                    </p>
+                    Wish you success
+                    <br/>
+                    ${object.teacher.name}.
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

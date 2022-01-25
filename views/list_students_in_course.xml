@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="list_students_in_course" name="ListStudentsInCourse">
+            <t t-call="website.layout">
+                <div class="Send_mail_to_students">
+                    <div class="container">
+                        <h1 class="text-black">
+                            <span>Students in course:</span>
+                            <t t-esc="course.name"/>
+                        </h1>
+                    </div>
+                    <div class="container mt-2">
+                        <table class="table" id="list_students_in_course">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Surname</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="i" t-value="1"/>
+                                <t t-foreach="welcomed_students" t-as="student">
+                                    <tr>
+                                        <th>
+                                            <t t-esc="i"/>
+                                        </th>
+                                        <th>
+                                            <t t-esc="student.student_name"/>
+                                        </th>
+                                        <th>
+                                            <t t-esc="student.student_surname"/>
+                                        </th>
+                                    </tr>
+                                    <t t-set="i" t-value="i+1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div>
+                            <a class="btn btn-primary float-left"
+                               href="/courses/">
+                                Back
+                            </a>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+                    <t t-if="is_teacher">
+                        <div>
+                            <form t-attf-action="/course/#{course.id}/welcome_students" method="POST">
+                                <div class="container">
+                                    <h1 class="text-black">
+                                        <span>Students that are not welcomed:</span>
+                                    </h1>
+                                </div>
+                                <div class="container">
+                                    <div class="container mt-2">
+                                        <table class="table mt-3" id="notWelcomedStudents">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Surname</th>
+                                                    <th scope="col">Send mail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-set="i" t-value="1"/>
+                                                <t t-foreach="not_welcomed_students" t-as="not_welcomed">
+                                                    <tr>
+                                                        <th>
+                                                            <t t-esc="i"/>
+                                                        </th>
+                                                        <th>
+                                                            <t t-esc="not_welcomed.student_name"/>
+                                                        </th>
+                                                        <th>
+                                                            <t t-esc="not_welcomed.student_surname"/>
+                                                        </th>
+                                                        <th>
+                                                            <input type="checkbox"
+                                                                   t-attf-name="student_welcome_#{not_welcomed.id}"
+                                                                   t-attf-value="#{not_welcomed.id}"/>
+                                                        </th>
+                                                    </tr>
+                                                    <t t-set="i" t-value="i+1"/>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        <div>
+                                            <button class="btn btn-primary float-right" type="submit">
+                                                Send Welcome Mail
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

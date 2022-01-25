@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="list_courses" name="ListCourses">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h1 class="text-black">Available courses:</h1>
+                </div>
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Number of students</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="courses" t-as="course">
+                                <tr>
+                                    <th>
+                                        <t t-esc="courses.index(course)+1"/>
+                                    </th>
+                                    <th>
+                                        <a t-attf-href="/course/#{course.id}/">
+                                            <t t-esc="course.name"/>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <t t-esc="course.number_students_in_course"/>
+                                    </th>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+    </data>
+</odoo>

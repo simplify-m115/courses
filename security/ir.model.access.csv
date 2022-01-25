@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_courses_students,access.courses.students,model_courses_students,,1,1,1,1
+access_courses_courses,access.courses.courses,model_courses_courses,,1,1,1,1
+access_courses_teachers,access.courses.teachers,model_courses_teachers,,1,1,1,1
+access_courses_grades,access.courses.grades,model_courses_grades,,1,1,1,1
+access_courses_send_mail,access.courses.send_mail,model_courses_send_mail,,1,1,1,1
